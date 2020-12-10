@@ -12,17 +12,29 @@ from operator import add
 # finds rotation and translation of vision targets
 class CaptureImage:
 
-    # initilaze variables
-    def __init__(self, detector):
+    # # initilaze variables
+    # def __init__(self, detector):
 
-        self.detector = detector
-        self.generator = detector.get_generator()
+    #     self.detector = detector
+    #     self.generator = detector.get_generator()
+
+    #     frame, _ = self.generator.generate()
+    #     self.SCREEN_HEIGHT, self.SCREEN_WIDTH = frame.shape[:2]
+
+    #     # constant to scale down display windows
+    #     self.DISPLAY_CONSTANT = 0.8 if self.SCREEN_HEIGHT > 1000 else 1.0
+
+    def __init__(self, generator):
+        self.generator = generator
 
         frame, _ = self.generator.generate()
         self.SCREEN_HEIGHT, self.SCREEN_WIDTH = frame.shape[:2]
 
         # constant to scale down display windows
         self.DISPLAY_CONSTANT = 0.8 if self.SCREEN_HEIGHT > 1000 else 1.0
+
+
+    
 
     def __enter__(self):
         return self
@@ -33,10 +45,12 @@ class CaptureImage:
     def display_windows(self, frame, ref_frame):
 
         cv2.imshow("frame", frame)
-        cv2.imshow("ref_frame", ref_frame)
+        # cv2.imshow("ref_frame", ref_frame)
 
     def update_frame(self):
         frame, _ = self.generator.generate()
+        pos = (int(frame.shape[1] /2), int(frame.shape[0]/2))
+        cv2.drawMarker(frame, pos, (0, 0, 255), cv2.MARKER_CROSS, 20, 2, cv2.LINE_8)
 
         ref_frame, _ = self.generator.generate()
         cv2.circle(ref_frame, (int(self.SCREEN_WIDTH/2), int(self.SCREEN_HEIGHT/2 - 200)), 2, (255, 255, 255), 2)
