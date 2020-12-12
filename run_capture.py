@@ -26,8 +26,6 @@ with CaptureImage(generator) as c:
         c.update_frame()
         key = cv2.waitKey(wait_time)
         # pos = (generator.get_frame().shape[1] /2, generator.get_frame().shape[0]/2)
-
-
         if key == ord('q'):
             break
         if key == ord('c'):
