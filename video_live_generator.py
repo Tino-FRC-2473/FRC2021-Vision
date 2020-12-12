@@ -9,8 +9,8 @@ class VideoLiveGenerator:
         self.input = cv2.VideoCapture(int(input_port))
         self.set_camera_settings(str(input_port))
 
-        self.input.set(cv2.CAP_PROP_FRAME_WIDTH, 1080)
-        self.input.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+        self.input.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
+        self.input.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
         frame = self.get_frame()
         self.SCREEN_HEIGHT, self.SCREEN_WIDTH = frame.shape[:2]
