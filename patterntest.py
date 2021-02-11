@@ -1,12 +1,13 @@
 ball_distance
 ball_left
 ball_right
-distance_threshold = 10 #units in feet, smallest distance of red ball as marker
+distance_threshold = 10  # units in feet, smallest distance of red ball as marker
 
 # Path A red: 1
 # Path A blue: 2
 # Path B red: 3
 # Path B blue: 4
+
 
 def patternGenerator(distance, left, right):
     if(distance < distance_threshold):
