@@ -4,6 +4,7 @@ FRAME_HEIGHT = 1080
 LEFT_BOUND = 860  # 960 (center) - 100 px
 RIGHT_BOUND = 1060  # 960 (center) + 100 px
 
+
 def determinePattern(dist, x1, x2, x3):
     center_ball_x = x1
     if (x2 < RIGHT_BOUND and x2 > LEFT_BOUND):
@@ -39,6 +40,7 @@ def determinePattern(dist, x1, x2, x3):
 # Path A blue: 2
 # Path B red: 3
 # Path B blue: 4
+
 
 def patternGenerator(distance, left, right):
     if(distance < DISTANCE_THRESHOLD):
