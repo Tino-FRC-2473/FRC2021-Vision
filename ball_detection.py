@@ -2,8 +2,9 @@ import cv2
 import numpy as np
 import imutils
 
-RADIUS_THRESH = 25 #modify
-KNOWN_RADIUS = 3.5 #in
+RADIUS_THRESH = 25  # modify
+KNOWN_RADIUS = 3.5  # in
+
 
 def detectBall(frame):
     frame = cv2.GaussianBlur(frame, (5, 5), 0)
@@ -19,7 +20,7 @@ def detectBall(frame):
     cnts = imutils.grab_contours(cnts)
 
     if len(cnts) > 0:
-        max_cnt = max(cnts, key = cv2.contourArea)
+        max_cnt = max(cnts, key=cv2.contourArea)
         for cnt in cnts:
             ((x, y), radius) = cv2.minEnclosingCircle(cnt)
 
