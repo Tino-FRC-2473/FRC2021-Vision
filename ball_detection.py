@@ -2,18 +2,19 @@ import cv2
 import numpy as np
 import imutils
 
-KNOWN_DIAMETER_PX = 156 #px
-KNOWN_DISTANCE = 90 #in
-KNOWN_DIAMETER_IN = 7 #in
+KNOWN_DIAMETER_PX = 156  # px
+KNOWN_DISTANCE = 90  # in
+KNOWN_DIAMETER_IN = 7  # in
 FOCAL_LENGTH = 2005.714286
 
-RADIUS_THRESH = 10 #modify
+RADIUS_THRESH = 10  # modify
 
 
 def distance(flength, kwidth, pwidth):
     dist = ((kwidth * flength) / pwidth) / 12
     print("DISTANCE: ", dist)
     return round(dist, 1)
+
 
 def detectBall(frame, w, h):
     x_coords = []
@@ -41,9 +42,9 @@ def detectBall(frame, w, h):
 
             # FOR DETERMINING DISTANCE TO CLOSEST BALL:
             if any(cnt[0][0] == max_cnt[0][0]):
-            # dist = 10 #ft
+                # dist = 10 #ft
                 dist = distance(FOCAL_LENGTH, KNOWN_DIAMETER_IN, radius*2)
-                #cv2.putText(frame, '{} in'.format(str(dist)), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
+                # cv2.putText(frame, '{} in'.format(str(dist)), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
 
             if radius >= RADIUS_THRESH:
                 x_coords.append(x)

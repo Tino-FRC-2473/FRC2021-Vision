@@ -38,7 +38,6 @@ def determinePattern(dist, x1, x2, x3):
     return pattern
 
 
-
 def patternGenerator(distance, left, right):
     if(distance < DISTANCE_THRESHOLD):
         if(left):
