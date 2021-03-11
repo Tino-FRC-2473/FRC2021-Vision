@@ -1,8 +1,9 @@
-DISTANCE_THRESHOLD = 10  # units in feet, smallest distance of red ball as marker with wiggle room
+DISTANCE_THRESHOLD = 9  # units in feet, smallest distance of red ball as marker with wiggle room
 FRAME_WIDTH = 1920
 FRAME_HEIGHT = 1080
 LEFT_BOUND = 860  # 960 (center) - 100 px
 RIGHT_BOUND = 1060  # 960 (center) + 100 px
+PATHS = ['A RED', 'A BLUE', 'B RED', 'B BLUE']
 
 
 def determinePattern(dist, x1, x2, x3):
@@ -36,20 +37,16 @@ def determinePattern(dist, x1, x2, x3):
     pattern = patternGenerator(dist, left_zone_ball, right_zone_ball)
     return pattern
 
-# Path A red: 1
-# Path A blue: 2
-# Path B red: 3
-# Path B blue: 4
 
 
 def patternGenerator(distance, left, right):
     if(distance < DISTANCE_THRESHOLD):
         if(left):
-            return 1
+            return PATHS[0]
         else:
-            return 3
+            return PATHS[2]
     else:
         if(not right):
-            return 2
+            return PATHS[1]
         else:
-            return 4
+            return PATHS[3]
