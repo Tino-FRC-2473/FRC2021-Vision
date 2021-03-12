@@ -20,6 +20,7 @@ def distance(flength, kwidth, pwidth):
 
 def detectBall(frame, w, h):
     x_coords = []
+    dist = 0
     output = frame.copy()
     lower_yellow = np.array([17, 130, 130])  # values from field image #fix this range
     higher_yellow = np.array([30, 255, 255])  # values from field image
@@ -52,7 +53,9 @@ def detectBall(frame, w, h):
                 x_coords.append(x)
                 cv2.circle(output, (int(x), int(y)), int(radius), (0, 255, 0), 2)
 
-    return output, x_coords, dist, mask
+    return output, x_coords, dist
+
+
     # return mask, dist if needed
 
 

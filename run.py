@@ -9,11 +9,11 @@ height = int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 while True:
     ret, frame = camera.read()
-    frame_detected, x_coords, dist, mask = detectBall(frame, width, height)
-    pattern = determinePattern(dist, x_coords[0], x_coords[1], x_coords[2])
+    frame_detected, x_coords, dist = detectBall(frame, width, height)
+    pattern = determinePattern(dist, x_coords)
     print(pattern)
-    # cv2.putText(frame_detected, str(pattern), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
-    # cv2.imshow('ball detection', frame_detected)
+    cv2.putText(frame_detected, str(pattern), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
+    cv2.imshow('ball detection', frame_detected)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
