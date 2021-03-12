@@ -1,4 +1,4 @@
-DISTANCE_THRESHOLD = 9  # units in feet, smallest distance of red ball as marker with wiggle room
+DISTANCE_THRESHOLD = 14  # units in feet, smallest distance of red ball as marker with wiggle room
 FRAME_WIDTH = 1920
 FRAME_HEIGHT = 1080
 LEFT_BOUND = 860  # 960 (center) - 100 px
@@ -8,7 +8,7 @@ PATHS = ['A RED', 'A BLUE', 'B RED', 'B BLUE']
 #dist is distance to closest ball, x_coords is array of the center coords of all balls detected
 def determinePattern(dist, x_coords):
     pattern = ""
-    if (len(x_coords)>0):
+    if (len(x_coords)==3):
         x1 = x_coords[0]
         x2 = x_coords[1]
         x3 = x_coords[2]
