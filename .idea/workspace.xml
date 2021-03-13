@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a478e26b-5521-4806-a475-64cc49a26999" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ball_detection.py" beforeDir="false" afterPath="$PROJECT_DIR$/ball_detection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patterntest.py" beforeDir="false" afterPath="$PROJECT_DIR$/patterntest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/FRC2021-Vision-BallDetection.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ball_detection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ball_images/5_feet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ball_images/5_feet_modified.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ball_images/patha_blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ball_images/patha_red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ball_images/pathb_blue.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ball_images/pathb_red.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/patterntest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/run_pattern.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,5 +71,16 @@
       <updated>1615525788005</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
