@@ -1,10 +1,10 @@
-DISTANCE_THRESHOLD = 14  # units in feet, smallest distance of red ball as marker with wiggle room
+DISTANCE_THRESHOLD = 14  # ft, distance to closest red balls w/ wiggle room
 PATHS = ['A RED', 'A BLUE', 'B RED', 'B BLUE']
 
 
 # dist is distance to closest ball, x_coords is array of the center coords of all balls detected
 def determinePattern(dist, x_coords):
-    path = getPath(dist)  # determine the path color
+    path = getPathColor(dist)  # determine the path color
 
     if len(x_coords) == 3:
         x1 = x_coords[0]  # closest ball
@@ -12,24 +12,24 @@ def determinePattern(dist, x_coords):
         x3 = x_coords[2]  # 3rd closest ball
 
     if path:  # compare the red paths
-        if abs(x3-x1) > 180:  # horizontal distance buffer calculated from path a red (in px)
+        # 180px = max deviation from x3 ball being aligned w/ x1 ball in path b red
+        if abs(x3-x1) > 180:
             path = PATHS[0]  # path a red
         else:
             path = PATHS[2]  # path b red
 
     else:  # compare the blue paths
         if abs(x2-x1) > 450:  # subject to change, horizontal distance buffer (in px)
-           path = PATHS[1]  # path a blue
+            path = PATHS[1]  # path a blue
         else:
-           path = PATHS[3]  # path b blue
+            path = PATHS[3]  # path b blue
 
     return path
 
 
-def getPath(distance):
+# returns if distance to closest ball is lower than threshold
+def getPathColor(distance):
     return distance < DISTANCE_THRESHOLD  # true -> red, false -> blue
-
-
 
 # OLD STRATEGY
 
@@ -60,4 +60,3 @@ def getPath(distance):
 #             left_zone_ball = True
 #         elif x3 is not None and x3 != center_ball_x and x3 > RIGHT_BOUND:
 #             right_zone_ball = True
-

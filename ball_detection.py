@@ -1,10 +1,14 @@
 import cv2
 import numpy as np
 
+# known diamter of ball from 90in way (not accounting for angle)
 KNOWN_DIAMETER_PX = 156  # px
+# known distance from cam to closest ball (7.5', not accounting for angle)
 KNOWN_DISTANCE = 90  # in
+# known diameter of ball
 KNOWN_DIAMETER_IN = 7  # in
-FOCAL_LENGTH = 2005.714286
+# focal len = 90 * 156 / 7
+FOCAL_LENGTH = 2005.714286 # px
 
 RADIUS_THRESH = 25  # modify
 KNOWN_RADIUS = 3.5  # in
@@ -21,7 +25,7 @@ def detectBall(frame, w, h):
     x_coords = []
     dist = 0
     output = frame.copy()
-    lower_yellow = np.array([17, 130, 130])  # values from field image # fix this range
+    lower_yellow = np.array([17, 130, 130])  # values from field image; fix this range
     higher_yellow = np.array([30, 255, 255])  # values from field image
 
     hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
