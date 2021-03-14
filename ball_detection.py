@@ -8,7 +8,7 @@ KNOWN_DISTANCE = 90  # in
 # known diameter of ball
 KNOWN_DIAMETER_IN = 7  # in
 # focal len = 90 * 156 / 7
-FOCAL_LENGTH = 2005.714286 # px
+FOCAL_LENGTH = 2005.714286  # px
 
 RADIUS_THRESH = 25  # modify
 KNOWN_RADIUS = 3.5  # in
