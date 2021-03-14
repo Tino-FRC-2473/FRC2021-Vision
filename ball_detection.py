@@ -14,14 +14,16 @@ RADIUS_THRESH = 25  # modify
 KNOWN_RADIUS = 3.5  # in
 RADIUS_THRESH = 10  # modify
 
+CROP_HEIGHT = 145  # crop the height of the frame to hide other yellow objects
+
 
 def distance(flength, kwidth, pwidth):
     dist = ((kwidth * flength) / pwidth) / 12
     print("DISTANCE: ", dist)
     return round(dist, 1)
 
-
-def detectBall(frame, w, h):
+def detectBall(frame):
+    w, h = frame.shape[1], frame.shape[0]
     x_coords = []
     dist = 0
     output = frame.copy()
@@ -34,52 +36,23 @@ def detectBall(frame, w, h):
     mask = cv2.erode(mask, None, iterations=7)
     mask = cv2.dilate(mask, None, iterations=10)
 
-    mask = mask[145:h, 0:w]
-    output = output[145:h, 0:w]
+    mask = mask[CROP_HEIGHT:h, 0:w]  # crop the image to hide other yellow objects
+    output = output[CROP_HEIGHT:h, 0:w]
 
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    cnts = grab_contours(cnts)
+    cnts = cnts[0]  # simplified grab contours method
 
     if len(cnts) > 0:
-        max_cnt = max(cnts, key=cv2.contourArea)
+        max_cnt = max(cnts, key=cv2.contourArea)  # closest ball
+        _, radius = cv2.minEnclosingCircle(max_cnt)
+        dist = distance(FOCAL_LENGTH, KNOWN_DIAMETER_IN, radius * 2)
+        print("DIST: ", dist)
         for cnt in cnts:
             ((x, y), radius) = cv2.minEnclosingCircle(cnt)
-            print(radius)
-
-            # FOR DETERMINING DISTANCE TO CLOSEST BALL:
-            if any(cnt[0][0] == max_cnt[0][0]):
-                # dist = 10  # ft
-                print("X_COORD: ", x)
-                dist = distance(FOCAL_LENGTH, KNOWN_DIAMETER_IN, radius * 2)
-                print("DIST: ", dist)
-                # cv2.putText(frame, '{} in'.format(str(dist)), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
-
+            print("RADIUS: ", radius)
             if radius >= RADIUS_THRESH:
                 x_coords.append(x)
                 cv2.circle(output, (int(x), int(y)), int(radius), (0, 255, 0), 2)
 
     return output, x_coords, dist
 
-
-def grab_contours(cnts):
-    # if the length the contours tuple returned by cv2.findContours
-    # is '2' then we are using either OpenCV v2.4, v4-beta, or
-    # v4-official
-    if len(cnts) == 2:
-        cnts = cnts[0]
-
-    # if the length of the contours tuple is '3' then we are using
-    # either OpenCV v3, v4-pre, or v4-alpha
-    elif len(cnts) == 3:
-        cnts = cnts[1]
-
-    # otherwise OpenCV has changed their cv2.findContours return
-    # signature yet again and I have no idea WTH is going on
-    else:
-        raise Exception(("Contours tuple must have length 2 or 3, "
-                         "otherwise OpenCV changed their cv2.findContours return "
-                         "signature yet again. Refer to OpenCV's documentation "
-                         "in that case"))
-
-    # return the actual contours array
-    return cnts
