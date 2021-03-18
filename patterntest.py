@@ -1,5 +1,5 @@
 DISTANCE_THRESHOLD = 14  # ft, distance to closest red balls w/ wiggle room
-PATHS = ['A RED', 'A BLUE', 'B RED', 'B BLUE']
+PATHS = ['AR', 'AB', 'BR', 'BB']
 
 # dist is distance to closest ball, x_coords is array of the center coords of all balls detected
 def determinePattern(dist, x_coords):
