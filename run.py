@@ -18,7 +18,7 @@ sender = DataSender()
 if args.type == "camera":
     camera = VideoLiveGenerator(args.port)
     while True:
-        ret, frame = camera.read()
+        frame = camera.get_frame()
 
         if args.test == "prog":  # if statement surrounding all ball detection/pattern frames
             frame_detected, x_coords, dist = detectBall(frame)
