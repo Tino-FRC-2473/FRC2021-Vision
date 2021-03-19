@@ -5,8 +5,8 @@ import subprocess
 
 class VideoLiveGenerator:
     def __init__(self, input_port):
-        self.input_port = input_port
-        self.input = cv2.VideoCapture(int(input_port))
+        self.input_port = str(input_port)
+        self.input = cv2.VideoCapture(str(input_port))
         self.set_camera_settings(str(input_port))
 
         self.input.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
@@ -32,7 +32,7 @@ class VideoLiveGenerator:
 
     def get_frame(self):
         _, frame = self.input.read()
-        frame = np.rot90(frame, 3).copy()
+        # frame = np.rot90(frame, 3).copy()
         return frame
 
     def get_horizontal_fov(self):

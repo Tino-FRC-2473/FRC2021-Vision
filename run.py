@@ -15,7 +15,7 @@ args = parser.parse_args()
 sender = DataSender()
 
 if args.type == "camera":
-    camera = cv2.VideoCapture(args.port)
+    camera = cv2.video_live_generator(args.port)
     while True:
         ret, frame = camera.read()
 
