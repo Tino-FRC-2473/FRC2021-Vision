@@ -19,7 +19,7 @@ if args.type == "camera":
     camera = VideoLiveGenerator(args.port)
     while True:
         frame = camera.get_frame()
-
+        cv2.imwrite('frame.png', frame)
         if args.test == "prog":  # if statement surrounding all ball detection/pattern frames
             frame_detected, x_coords, dist = detectBall(frame)
             pattern = determinePattern(dist, x_coords)
