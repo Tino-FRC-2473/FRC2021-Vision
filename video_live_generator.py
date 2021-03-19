@@ -27,6 +27,7 @@ class VideoLiveGenerator:
         try:
             subprocess.call(["v4l2-ctl", "-d", camera_path, "-c", "exposure_auto=1"])
             subprocess.call(["v4l2-ctl", "-d", camera_path, "-c", "exposure_absolute=1"])
+            subprocess.call(["v4l2-ctl", "-d", camera_path, "-c", "white_balance_temperature_auto=1"])
         except FileNotFoundError:
             print("exposure adjustment not completed")
 
