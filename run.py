@@ -23,13 +23,13 @@ if args.type == "camera":
             frame_detected, x_coords, dist = detectBall(frame)
             pattern = determinePattern(dist, x_coords)
             sender.send_data(pattern)
-            cv2.putText(frame_detected, str(pattern), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
-            cv2.imshow('ball detection', frame_detected)
+            # cv2.putText(frame_detected, str(pattern), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
+            # cv2.imshow('ball detection', frame_detected)
         else:
-            cv2.imshow('raw frame', frame)
+            # cv2.imshow('raw frame', frame)
 
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+        # if cv2.waitKey(1) & 0xFF == ord('q'):
+            # break
 
     cv2.destroyAllWindows()
 
@@ -41,9 +41,9 @@ elif args.type == 'image':
         img_detected, x_coords, dist = detectBall(img)
         pattern = determinePattern(dist, x_coords)
         sender.send_data(pattern)
-        cv2.putText(img_detected, str(pattern), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
-        cv2.imshow('ball detection', img_detected)
+        # cv2.putText(img_detected, str(pattern), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
+        # cv2.imshow('ball detection', img_detected)
     else:
-        cv2.imshow('raw frame', img)
+        # cv2.imshow('raw frame', img)
 
     cv2.waitKey(0)
