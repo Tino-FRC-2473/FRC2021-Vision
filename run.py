@@ -25,13 +25,13 @@ if args.type == "camera":
             sender.send_data(pattern)
             # cv2.putText(frame_detected, str(pattern), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 2)
             # cv2.imshow('ball detection', frame_detected)
-        else:
+        # else:
             # cv2.imshow('raw frame', frame)
 
         # if cv2.waitKey(1) & 0xFF == ord('q'):
             # break
 
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
 
 elif args.type == 'image':
     img = cv2.imread(args.image)
