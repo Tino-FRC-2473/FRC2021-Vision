@@ -22,7 +22,7 @@ class VideoLiveGenerator:
         return self
 
     def set_camera_settings(self, camera_port):
-        camera_path = "/dev/video" + camera_port
+        camera_path = camera_port
 
         try:
             subprocess.call(["v4l2-ctl", "-d", camera_path, "-c", "exposure_auto=1"])

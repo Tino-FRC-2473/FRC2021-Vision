@@ -3,12 +3,13 @@ import cv2
 from ball_detection import detectBall
 from patterntest import determinePattern
 from data_sender import DataSender
+from video_live_generator import VideoLiveGenerator
 
 parser = argparse.ArgumentParser()
 parser.add_argument("type", help="use camera feed or image")  # camera or image
 # NEW COMMAND LINE ARGUMENT FOR POTENTIAL TEST IMAGE PROBLEMS
 parser.add_argument("test", help="test the program or take test pictures")  # prog for test program, pic for taking pictures
-parser.add_argument("-p", "--port", type=int, help="camera port to read from")
+parser.add_argument("-p", "--port", help="camera port to read from")
 parser.add_argument("-i", "--image", help="path to input image")
 args = parser.parse_args()
 
