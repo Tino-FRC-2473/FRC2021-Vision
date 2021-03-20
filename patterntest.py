@@ -1,51 +1,28 @@
-DISTANCE_THRESHOLD = 9  # units in feet, smallest distance of red ball as marker with wiggle room
-FRAME_WIDTH = 1920
-FRAME_HEIGHT = 1080
-LEFT_BOUND = 860  # 960 (center) - 100 px
-RIGHT_BOUND = 1060  # 960 (center) + 100 px
-PATHS = ['A RED', 'A BLUE', 'B RED', 'B BLUE']
+DISTANCE_THRESHOLD = 14  # ft, distance to closest red balls w/ wiggle room, for some images make it 11.2
+PATHS = ['AR', 'AB', 'BR', 'BB']
 
+# dist is distance to closest ball, x_coords is array of the center coords of all balls detected
+def determinePattern(dist, x_coords):
+    path = (dist < DISTANCE_THRESHOLD)  # true -> red, false -> blue
 
-def determinePattern(dist, x1, x2, x3):
-    center_ball_x = x1
-    if (x2 < RIGHT_BOUND and x2 > LEFT_BOUND):
-        center_ball_x = x2
-    elif (x3 is not None and x3 < RIGHT_BOUND and x3 > LEFT_BOUND):
-        center_ball_x = x3
+    if len(x_coords) == 3:
+        x1 = x_coords[0]  # closest ball
+        x2 = x_coords[1]  # 2nd closest ball
+        x3 = x_coords[2]  # 3rd closest ball
 
-    left_zone_ball = False
-    right_zone_ball = False
+        if path:  # compare the red paths
+            # 180px = max deviation from x3 ball being aligned w/ x1 ball in path b red
+            if abs(x3-x1) > 180:  # distance between ball 2 and ball 1 buffer
+                path = PATHS[0]  # path a red
+            else:
+                path = PATHS[2]  # path b red
 
-    if (x1 != center_ball_x and x1 < LEFT_BOUND):
-        left_zone_ball = True
-    elif (x1 != center_ball_x and x1 > RIGHT_BOUND):
-        right_zone_ball = True
-
-    if (x2 != center_ball_x and x2 < LEFT_BOUND):
-        left_zone_ball = True
-    elif (x2 != center_ball_x and x2 > RIGHT_BOUND):
-        right_zone_ball = True
-
-    if (x3 is not None and x3 != center_ball_x and x3 < LEFT_BOUND):
-        left_zone_ball = True
-    elif (x3 is not None and x3 != center_ball_x and x3 > RIGHT_BOUND):
-        right_zone_ball = True
-
-    print("left zone: ", left_zone_ball)
-    print("right zone: ", right_zone_ball)
-
-    pattern = patternGenerator(dist, left_zone_ball, right_zone_ball)
-    return pattern
-
-
-def patternGenerator(distance, left, right):
-    if(distance < DISTANCE_THRESHOLD):
-        if(left):
-            return PATHS[0]
-        else:
-            return PATHS[2]
+        else:  # compare the blue paths
+            if abs(x2-x1) > 520:  # distance between ball 2 and ball 1 buffer
+                path = PATHS[1]  # path a blue
+            else:
+                path = PATHS[3]  # path b blue
     else:
-        if(not right):
-            return PATHS[1]
-        else:
-            return PATHS[3]
+        path = "Undetermined"
+
+    return path
