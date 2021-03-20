@@ -49,6 +49,7 @@ def detectBall(frame):
         print("DIST: ", dist)
         for cnt in cnts:
             ((x, y), radius) = cv2.minEnclosingCircle(cnt)
+            print("X: ", x)
             print("RADIUS: ", radius)
             if radius >= RADIUS_THRESH:
                 x_coords.append(x)

@@ -36,7 +36,7 @@ if args.type == "camera":
 
 elif args.type == 'image':
     img = cv2.imread(args.image)
-    img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+    #img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
 
     if args.test == "prog":  # if statement surrounding all ball detection/pattern frames
         img_detected, x_coords, dist = detectBall(img)

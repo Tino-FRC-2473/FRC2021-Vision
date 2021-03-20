@@ -1,4 +1,4 @@
-DISTANCE_THRESHOLD = 14  # ft, distance to closest red balls w/ wiggle room
+DISTANCE_THRESHOLD = 14  # ft, distance to closest red balls w/ wiggle room, for some images make it 11.2
 PATHS = ['AR', 'AB', 'BR', 'BB']
 
 # dist is distance to closest ball, x_coords is array of the center coords of all balls detected
@@ -12,13 +12,13 @@ def determinePattern(dist, x_coords):
 
         if path:  # compare the red paths
             # 180px = max deviation from x3 ball being aligned w/ x1 ball in path b red
-            if abs(x3-x1) > 180:
+            if abs(x3-x1) > 180:  # distance between ball 2 and ball 1 buffer
                 path = PATHS[0]  # path a red
             else:
                 path = PATHS[2]  # path b red
 
         else:  # compare the blue paths
-            if abs(x2-x1) > 450:  # subject to change, horizontal distance buffer (in px)
+            if abs(x2-x1) > 520:  # distance between ball 2 and ball 1 buffer
                 path = PATHS[1]  # path a blue
             else:
                 path = PATHS[3]  # path b blue
